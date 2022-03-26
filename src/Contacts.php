@@ -8,20 +8,20 @@ class Contacts {
 	/**
 	 * @var Plugins
 	 */
-	private $pluginsApi;
+	private $plugins_api;
 
 	/**
 	 * @var string
 	 */
-	private $pluginFile;
+	private $plugin_file;
 
-	public function __construct( Plugins $pluginsApi, string $pluginFile ) {
-		$this->pluginsApi = $pluginsApi;
-		$this->pluginFile = $pluginFile;
+	public function __construct( Plugins $plugins_api, string $plugin_file ) {
+		$this->plugins_api = $plugins_api;
+		$this->plugin_file = $plugin_file;
 	}
 
 	public function init() {
-		$this->pluginsApi->register_activation_hook( $this->pluginFile, [ $this, 'activate_plugin' ] );
+		$this->plugins_api->register_activation_hook( $this->plugin_file, [ $this, 'activate_plugin' ] );
 	}
 
 	public function activate_plugin() {

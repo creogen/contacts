@@ -9,10 +9,10 @@ use PHPUnit\Framework\TestCase;
  */
 final class ContactsTest extends TestCase {
 	public function testInit_WhenCalled_RegistersActivationHook() {
-		$pluginsApi = $this->createMock( Plugins::class );
-		$contacts = new Contacts( $pluginsApi, 'a' );
+		$plugins_api = $this->createMock( Plugins::class );
+		$contacts = new Contacts( $plugins_api, 'a' );
 
-		$pluginsApi
+		$plugins_api
 			->expects( self::once() )
 			->method( 'register_activation_hook' )
 			->with( 'a', [ $contacts, 'activate_plugin' ] );
