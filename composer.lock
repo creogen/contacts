@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/merkushin/WPAL.git",
-                "reference": "5af4e8a51a93b2f73142d056389caef735ce0716"
+                "reference": "7dba022a9c971210f6b1e5a0287e08740526231c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/merkushin/WPAL/zipball/5af4e8a51a93b2f73142d056389caef735ce0716",
-                "reference": "5af4e8a51a93b2f73142d056389caef735ce0716",
+                "url": "https://api.github.com/repos/merkushin/WPAL/zipball/7dba022a9c971210f6b1e5a0287e08740526231c",
+                "reference": "7dba022a9c971210f6b1e5a0287e08740526231c",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "issues": "https://github.com/merkushin/WPAL/issues",
                 "source": "https://github.com/merkushin/WPAL/tree/main"
             },
-            "time": "2022-03-20T18:48:20+00:00"
+            "time": "2022-03-27T10:10:06+00:00"
         }
     ],
     "packages-dev": [
