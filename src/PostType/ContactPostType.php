@@ -2,8 +2,9 @@
 
 namespace Creogen\Contacts\PostType;
 
-use Merkushin\Wpal\PostTypes;
 use Merkushin\Wpal\Hooks;
+use Merkushin\Wpal\Localization;
+use Merkushin\Wpal\PostTypes;
 
 class ContactPostType implements PostTypeInterface {
 	/**
@@ -16,9 +17,15 @@ class ContactPostType implements PostTypeInterface {
 	 */
 	private $post_types_api;
 
-	public function __construct( Hooks $hooks_api, PostTypes $post_types_api ) {
+	/**
+	 * @var Localization
+	 */
+	private $l10n;
+
+	public function __construct( Hooks $hooks_api, PostTypes $post_types_api, Localization $l10n_api ) {
 		$this->hooks_api = $hooks_api;
 		$this->post_types_api = $post_types_api;
+		$this->l10n = $l10n_api;
 	}
 
 	public function register() {
@@ -28,18 +35,18 @@ class ContactPostType implements PostTypeInterface {
 	public function register_post_type() {
 		$args = [
 			'labels' => [
-				'name' => 'Contacts Directory',
-				'singular_name' => 'Contact',
-				'add_new' => 'Add Contact',
-				'add_new_item' => 'Add Contact',
-				'edit' => 'Edit', 
-				'edit_item' => 'Edit Contact',
-				'view_item' => 'View Contact',
-				'search_items' => 'Search Contacts',
-				'not_found' => 'Contact Not Found',
-				'not_found_in_trash' => 'Contact Not Found in Trash',
+				'name' => $this->l10n->__( 'Contacts Directory', 'creogen-contacts' ),
+				'singular_name' => $this->l10n->__( 'Contact', 'creogen-contacts' ),
+				'add_new' => $this->l10n->__( 'Add Contact', 'creogen-contacts' ),
+				'add_new_item' => $this->l10n->__( 'Add Contact', 'creogen-contacts' ),
+				'edit' => $this->l10n->__( 'Edit', 'creogen-contacts' ),
+				'edit_item' => $this->l10n->__( 'Edit Contact', 'creogen-contacts' ),
+				'view_item' => $this->l10n->__( 'View Contact', 'creogen-contacts' ),
+				'search_items' => $this->l10n->__( 'Search Contacts', 'creogen-contacts' ),
+				'not_found' => $this->l10n->__( 'Contact Not Found', 'creogen-contacts' ),
+				'not_found_in_trash' => $this->l10n->__( 'Contact Not Found in Trash', 'creogen-contacts' ),
 			],
-			'description' => 'Contacts directory on the website',
+			'description' => $this->l10n->__( 'Contacts directory on the website', 'creogen-contacts' ),
 			'public' => true,
 			'exclude_from_search' => false,
 			'publicly_queryable' => true,

@@ -2,6 +2,7 @@
 
 use Creogen\Contacts\PostType\ContactPostType;
 use Merkushin\Wpal\Hooks;
+use Merkushin\Wpal\Localization;
 use Merkushin\Wpal\PostTypes;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +13,8 @@ class ContactPostTypeTest extends TestCase {
 	public function testRegister_WhenCalled_AddsActionOnInitHook() {
 		$hooks_api = $this->createMock( Hooks::class );
 		$post_types_api = $this->createMock( PostTypes::class );
-		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api );
+		$l10n_api = $this->createMock( Localization::class );
+		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api, $l10n_api );
 
 		$hooks_api
 			->expects( self::once() )
@@ -24,7 +26,24 @@ class ContactPostTypeTest extends TestCase {
 	public function testRegisterPostType_WhenCalled_CallsWpRegisterPostType() {
 		$hooks_api = $this->createMock( Hooks::class );
 		$post_types_api = $this->createMock( PostTypes::class );
-		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api );
+		$l10n_api = $this->createMock( Localization::class );
+		$l10n_api
+			->method('__')
+			->willReturnMap(
+				[
+					[ 'Contacts Directory', 'creogen-contacts', 'Contacts Directory' ],
+					[ 'Contact', 'creogen-contacts', 'Contact' ],
+					[ 'Add Contact', 'creogen-contacts', 'Add Contact' ],
+					[ 'Edit', 'creogen-contacts', 'Edit' ],
+					[ 'Edit Contact', 'creogen-contacts', 'Edit Contact' ],
+					[ 'View Contact', 'creogen-contacts', 'View Contact' ],
+					[ 'Search Contacts', 'creogen-contacts', 'Search Contacts' ],
+					[ 'Contact Not Found', 'creogen-contacts', 'Contact Not Found' ],
+					[ 'Contact Not Found in Trash', 'creogen-contacts', 'Contact Not Found in Trash' ],
+					[ 'Contacts directory on the website', 'creogen-contacts', 'Contacts directory on the website' ],
+				]
+			);
+		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api, $l10n_api );
 
 		$expected_args = [
 			'labels' => [
