@@ -2,7 +2,8 @@
 
 namespace Creogen\Contacts;
 
-use Merkushin\Wpal\Plugins;
+use Merkushin\Wpal\Service\Plugins;
+use Merkushin\Wpal\ServiceFactory;
 
 class Contacts {
 	/**
@@ -15,9 +16,9 @@ class Contacts {
 	 */
 	private $plugin_file;
 
-	public function __construct( Plugins $plugins_api, string $plugin_file ) {
-		$this->plugins_api = $plugins_api;
+	public function __construct( string $plugin_file ) {
 		$this->plugin_file = $plugin_file;
+		$this->plugins_api = ServiceFactory::create_plugins();
 	}
 
 	public function init() {

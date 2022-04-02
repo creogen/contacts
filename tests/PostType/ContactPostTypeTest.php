@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 
 use Creogen\Contacts\PostType\ContactPostType;
-use Merkushin\Wpal\Hooks;
-use Merkushin\Wpal\Localization;
-use Merkushin\Wpal\PostTypes;
+use Merkushin\Wpal\Service\Hooks;
+use Merkushin\Wpal\Service\Localization;
+use Merkushin\Wpal\Service\PostTypes;
+use Merkushin\Wpal\ServiceFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,10 @@ class ContactPostTypeTest extends TestCase {
 		$hooks_api = $this->createMock( Hooks::class );
 		$post_types_api = $this->createMock( PostTypes::class );
 		$l10n_api = $this->createMock( Localization::class );
-		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api, $l10n_api );
+		ServiceFactory::set_custom_hooks( $hooks_api );
+		ServiceFactory::set_custom_post_types( $post_types_api );
+		ServiceFactory::set_custom_localization( $l10n_api );
+		$contact_post_type = new ContactPostType();
 
 		$hooks_api
 			->expects( self::once() )
@@ -43,7 +47,11 @@ class ContactPostTypeTest extends TestCase {
 					[ 'Contacts directory on the website', 'creogen-contacts', 'Contacts directory on the website' ],
 				]
 			);
-		$contact_post_type = new ContactPostType( $hooks_api, $post_types_api, $l10n_api );
+
+		ServiceFactory::set_custom_hooks( $hooks_api );
+		ServiceFactory::set_custom_post_types( $post_types_api );
+		ServiceFactory::set_custom_localization( $l10n_api );
+		$contact_post_type = new ContactPostType();
 
 		$expected_args = [
 			'labels' => [

@@ -2,9 +2,10 @@
 
 namespace Creogen\Contacts\PostType;
 
-use Merkushin\Wpal\Hooks;
-use Merkushin\Wpal\Localization;
-use Merkushin\Wpal\PostTypes;
+use Merkushin\Wpal\Service\Hooks;
+use Merkushin\Wpal\Service\Localization;
+use Merkushin\Wpal\Service\PostTypes;
+use Merkushin\Wpal\ServiceFactory;
 
 class ContactPostType implements PostTypeInterface {
 	/**
@@ -22,10 +23,10 @@ class ContactPostType implements PostTypeInterface {
 	 */
 	private $l10n;
 
-	public function __construct( Hooks $hooks_api, PostTypes $post_types_api, Localization $l10n_api ) {
-		$this->hooks_api = $hooks_api;
-		$this->post_types_api = $post_types_api;
-		$this->l10n = $l10n_api;
+	public function __construct() {
+		$this->hooks_api = ServiceFactory::create_hooks();
+		$this->post_types_api = ServiceFactory::create_post_types();
+		$this->l10n = ServiceFactory::create_localization();
 	}
 
 	public function register() {
