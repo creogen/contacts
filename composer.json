@@ -7,7 +7,8 @@
         "merkushin/wpal": "dev-main"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "humbug/php-scoper": "1.0.x-dev"
     },
     "license": "GPL-2.0-or-later",
     "autoload": {
