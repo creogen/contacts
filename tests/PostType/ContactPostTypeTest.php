@@ -27,6 +27,13 @@ class ContactPostTypeTest extends TestCase {
 		$contact_post_type->register();
 	}
 
+	public function testGetPostTypeName_WhenCalled_ReturnsExpectedValue() {
+		$actual = ContactPostType::get_post_type_name();
+
+		$expected = 'creogen_contact';
+		self::assertSame( $expected, $actual );
+	}
+
 	public function testRegisterPostType_WhenCalled_CallsWpRegisterPostType() {
 		$hooks_api = $this->createMock( Hooks::class );
 		$post_types_api = $this->createMock( PostTypes::class );

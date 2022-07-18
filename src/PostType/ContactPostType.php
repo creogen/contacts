@@ -8,6 +8,8 @@ use Merkushin\Wpal\Service\PostTypes;
 use Merkushin\Wpal\ServiceFactory;
 
 class ContactPostType implements PostTypeInterface {
+	private const POST_TYPE_NAME = 'creogen_contact';
+
 	/**
 	 * @var Hooks
 	 */
@@ -22,6 +24,10 @@ class ContactPostType implements PostTypeInterface {
 	 * @var Localization
 	 */
 	private $l10n;
+
+	public static function get_post_type_name(): string {
+		return self::POST_TYPE_NAME;
+	}
 
 	public function __construct() {
 		$this->hooks_api = ServiceFactory::create_hooks();
@@ -80,7 +86,7 @@ class ContactPostType implements PostTypeInterface {
 			'can_export' => true,
 			'show_in_rest' => true,
 		];
-		$this->post_types_api->register_post_type( 'creogen_contact', $args );
+		$this->post_types_api->register_post_type( self::POST_TYPE_NAME, $args );
 	}
 }
 
