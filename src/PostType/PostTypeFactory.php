@@ -12,7 +12,7 @@ class PostTypeFactory {
 		self::$custom_contact_post_type = $custom_contact_post_type;
 	}
 
-	public static function get_contact_post_type(): PostTypeInterface {
+	public static function create_contact_post_type(): PostTypeInterface {
 		if ( self::$custom_contact_post_type ) {
 			return self::$custom_contact_post_type;
 		}
